@@ -1,9 +1,11 @@
-import { Image, StyleSheet, Platform, View, Text } from "react-native";
+import { Image, StyleSheet, ImageBackground } from "react-native";
 
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+// import logo from "@/assets/images/icon.png";
+const logo = require("@/assets/images/icon.png");
 
 export default function HomeScreen() {
   return (
@@ -20,38 +22,35 @@ export default function HomeScreen() {
         <ThemedText type="title">Welcome! Asad Saeed</ThemedText>
         <HelloWave />
       </ThemedView>
-      <View>
-        <Text style={styles.text}>Asad is using View and Text components</Text>
-      </View>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
-          to see changes. Press{" "}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: "cmd + d", android: "cmd + m" })}
-          </ThemedText>{" "}
-          to open developer tools.
+      <ThemedView>
+        <ThemedText style={styles.text}>
+          Asad is using View and Text components
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this
-          starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{" "}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText>{" "}
-          to get a fresh <ThemedText type="defaultSemiBold">app</ThemedText>{" "}
-          directory. This will move the current{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
+        {/* static image */}
+        <ThemedText style={styles.text}>static image</ThemedText>
+        <Image source={logo} style={styles.image} />
+        {/* network image */}
+        <ThemedText style={styles.text}>network image</ThemedText>
+        <Image
+          source={{ uri: "https://picsum.photos/200/300" }}
+          style={styles.image}
+        />
+        {/* background image */}
+        <ThemedText style={styles.text}>background image</ThemedText>
+        <ImageBackground source={logo} style={{ flex: 1 }}>
+          <ThemedText
+            style={{
+              color: "blue",
+              fontSize: 30,
+              display: "flex",
+              padding: "auto",
+            }}
+          >
+            Hello World
+          </ThemedText>
+        </ImageBackground>
       </ThemedView>
     </ParallaxScrollView>
   );
@@ -77,5 +76,9 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 22,
     color: "white",
+  },
+  image: {
+    height: 100,
+    width: 200,
   },
 });
