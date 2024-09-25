@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Platform } from "react-native";
+import { Image, StyleSheet, Platform, View, Text } from "react-native";
 
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
@@ -20,6 +20,9 @@ export default function HomeScreen() {
         <ThemedText type="title">Welcome! Asad Saeed</ThemedText>
         <HelloWave />
       </ThemedView>
+      <View>
+        <Text style={styles.text}>Asad is using View and Text components</Text>
+      </View>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>
@@ -70,5 +73,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: "absolute",
+  },
+  text: {
+    fontSize: 22,
+    color: "white",
   },
 });
