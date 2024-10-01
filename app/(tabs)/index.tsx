@@ -7,6 +7,7 @@ import { ThemedView } from "@/components/ThemedView";
 import ButtonComp from "@/components/common/button";
 import ImageComp from "@/components/common/image";
 import TextComp from "@/components/common/text";
+import ModalComp from "@/components/common/modal";
 
 export default function HomeScreen() {
   return (
@@ -37,6 +38,9 @@ export default function HomeScreen() {
 
       {/* Button Component */}
       <ButtonComp />
+
+      {/* Modal Component */}
+      <ModalComp />
     </ParallaxScrollView>
   );
 }
