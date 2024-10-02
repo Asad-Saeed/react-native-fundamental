@@ -10,6 +10,7 @@ import TextComp from "@/components/common/text";
 import ModalComp from "@/components/common/modal";
 import StatusBarComp from "@/components/common/statusbar";
 import ActivityIndicatorComp from "@/components/common/activityIdicator";
+import AlertComp from "@/components/common/alert";
 
 export default function HomeScreen() {
   return (
@@ -49,6 +50,9 @@ export default function HomeScreen() {
 
       {/* Activity Indicator Component */}
       <ActivityIndicatorComp />
+
+      {/* Alert Component  */}
+      <AlertComp />
     </ParallaxScrollView>
   );
 }
