@@ -11,6 +11,7 @@ import ModalComp from "@/components/common/modal";
 import StatusBarComp from "@/components/common/statusbar";
 import ActivityIndicatorComp from "@/components/common/activityIdicator";
 import AlertComp from "@/components/common/alert";
+import CustomGreetComp from "@/components/common/customGreet";
 
 export default function HomeScreen() {
   return (
@@ -53,6 +54,10 @@ export default function HomeScreen() {
 
       {/* Alert Component  */}
       <AlertComp />
+
+      {/* Custom Component */}
+      <CustomGreetComp name="Asad" />
+      <CustomGreetComp name="Saeed" />
     </ParallaxScrollView>
   );
 }
