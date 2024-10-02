@@ -9,6 +9,7 @@ import ImageComp from "@/components/common/image";
 import TextComp from "@/components/common/text";
 import ModalComp from "@/components/common/modal";
 import StatusBarComp from "@/components/common/statusbar";
+import ActivityIndicatorComp from "@/components/common/activityIdicator";
 
 export default function HomeScreen() {
   return (
@@ -45,6 +46,9 @@ export default function HomeScreen() {
 
       {/* Status bar component */}
       <StatusBarComp />
+
+      {/* Activity Indicator Component */}
+      <ActivityIndicatorComp />
     </ParallaxScrollView>
   );
 }
