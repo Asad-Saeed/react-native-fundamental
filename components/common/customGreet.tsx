@@ -5,6 +5,11 @@ import { StyleSheet } from "react-native";
 const CustomGreetComp = ({ name }: any) => {
   return (
     <View style={[styles.container]}>
+      <View style={styles.darkMode}>
+        <Text style={styles.darkModeText}>
+          Style Inheritence <Text style={styles.boldText}>Bold</Text>
+        </Text>
+      </View>
       <Text style={styles.title}>Hello {name}</Text>
       <View style={[styles.box, styles.lightBlueBox, styles.boxShadow]}>
         <Text style={styles.text}>Hello {name}</Text>
@@ -21,6 +26,10 @@ export default CustomGreetComp;
 // Style Sheet
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "yellow", padding: 60 },
+  // inheritence
+  darkMode: { backgroundColor: "black", color: "white" },
+  darkModeText: { color: "white" },
+  boldText: { fontWeight: "bold" },
   title: { fontSize: 30, color: "pink" },
   text: { color: "red" },
   // extract styles
