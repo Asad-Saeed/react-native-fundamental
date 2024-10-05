@@ -62,13 +62,47 @@ export default function HomeScreen() {
 
       {/*  Flex Layout /Box components */}
       <View style={styles.boxContainer}>
-        <BoxComp style={{ backgroundColor: "#8e9b00" }}>Box 1</BoxComp>
-        <BoxComp style={{ backgroundColor: "#b65d1f" }}>Box 2</BoxComp>
-        <BoxComp style={{ backgroundColor: "#1c4c56" }}>Box 3</BoxComp>
-        <BoxComp style={{ backgroundColor: "#ab9156" }}>Box 4</BoxComp>
-        <BoxComp style={{ backgroundColor: "#6b0803" }}>Box 5</BoxComp>
-        <BoxComp style={{ backgroundColor: "#4e2c00" }}>Box 6</BoxComp>
-        <BoxComp style={{ backgroundColor: "#b95f21" }}>Box 7</BoxComp>
+        <BoxComp
+          style={{ backgroundColor: "#8e9b00", alignSelf: "flex-start" }}
+        >
+          Box 1
+        </BoxComp>
+        <BoxComp style={{ backgroundColor: "#b65d1f", alignSelf: "flex-end" }}>
+          Box 2
+        </BoxComp>
+        <BoxComp
+          style={{ backgroundColor: "#1c4c56", alignSelf: "flex-start" }}
+        >
+          Box 3
+        </BoxComp>
+        <BoxComp style={{ backgroundColor: "#ab9156", alignSelf: "stretch" }}>
+          Box 4
+        </BoxComp>
+        <BoxComp
+          style={{
+            backgroundColor: "#6b0803",
+            alignSelf: "auto",
+            position: "absolute",
+            top: 10,
+            right: 20,
+          }}
+        >
+          Box 5
+        </BoxComp>
+        <BoxComp
+          style={{
+            backgroundColor: "#4e2c00",
+            flexBasis: 140,
+            flex: 1,
+            flexShrink: 1,
+            flexGrow: 2,
+          }}
+        >
+          Box 6
+        </BoxComp>
+        <BoxComp style={{ backgroundColor: "#b95f21", flexGrow: 1 }}>
+          Box 7
+        </BoxComp>
       </View>
     </ParallaxScrollView>
   );
@@ -99,5 +133,23 @@ const styles = StyleSheet.create({
     height: 100,
     width: 200,
   },
-  boxContainer: { marginTop: 64, borderWidth: 6, borderColor: "red" },
+  boxContainer: {
+    // flex: 1,
+    height: 400,
+    // flexDirection: "column-reverse",
+    // justifyContent: "space-evenly",
+    // alignItems: "flex-end",
+    // alignContent: "stretch",
+    flexWrap: "wrap",
+    gap: 8,
+    // rowGap: 40,
+    // columnGap: 40,
+    // overflow: "scroll",
+    // marginTop: 64,
+    borderWidth: 6,
+    borderColor: "red",
+    position: "relative",
+    top: 20,
+    left: 20,
+  },
 });
