@@ -1,4 +1,4 @@
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
@@ -12,6 +12,7 @@ import StatusBarComp from "@/components/common/statusbar";
 import ActivityIndicatorComp from "@/components/common/activityIdicator";
 import AlertComp from "@/components/common/alert";
 import CustomGreetComp from "@/components/common/customGreet";
+import BoxComp from "@/components/common/flexLayout";
 
 export default function HomeScreen() {
   return (
@@ -24,7 +25,7 @@ export default function HomeScreen() {
         />
       }
     >
-      <ThemedView style={styles.titleContainer}>
+      {/* <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Welcome! Asad Saeed</ThemedText>
         <HelloWave />
       </ThemedView>
@@ -32,32 +33,43 @@ export default function HomeScreen() {
         <ThemedText style={styles.text}>
           Asad is using View and Text components
         </ThemedText>
-      </ThemedView>
+      </ThemedView> */}
 
       {/* Image Component */}
-      <ImageComp />
+      {/* <ImageComp /> */}
 
       {/* Text Component */}
-      <TextComp />
+      {/* <TextComp /> */}
 
       {/* Button Component */}
-      <ButtonComp />
+      {/* <ButtonComp /> */}
 
       {/* Modal Component */}
-      <ModalComp />
+      {/* <ModalComp /> */}
 
       {/* Status bar component */}
-      <StatusBarComp />
+      {/* <StatusBarComp /> */}
 
       {/* Activity Indicator Component */}
-      <ActivityIndicatorComp />
+      {/* <ActivityIndicatorComp /> */}
 
       {/* Alert Component  */}
-      <AlertComp />
+      {/* <AlertComp /> */}
 
       {/* Custom Component */}
-      <CustomGreetComp name="Asad" />
-      <CustomGreetComp name="Saeed" />
+      {/* <CustomGreetComp name="Asad" /> */}
+      {/* <CustomGreetComp name="Saeed" /> */}
+
+      {/*  Flex Layout /Box components */}
+      <View style={styles.boxContainer}>
+        <BoxComp style={{ backgroundColor: "#8e9b00" }}>Box 1</BoxComp>
+        <BoxComp style={{ backgroundColor: "#b65d1f" }}>Box 2</BoxComp>
+        <BoxComp style={{ backgroundColor: "#1c4c56" }}>Box 3</BoxComp>
+        <BoxComp style={{ backgroundColor: "#ab9156" }}>Box 4</BoxComp>
+        <BoxComp style={{ backgroundColor: "#6b0803" }}>Box 5</BoxComp>
+        <BoxComp style={{ backgroundColor: "#4e2c00" }}>Box 6</BoxComp>
+        <BoxComp style={{ backgroundColor: "#b95f21" }}>Box 7</BoxComp>
+      </View>
     </ParallaxScrollView>
   );
 }
@@ -87,4 +99,5 @@ const styles = StyleSheet.create({
     height: 100,
     width: 200,
   },
+  boxContainer: { marginTop: 64, borderWidth: 6, borderColor: "red" },
 });
