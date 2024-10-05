@@ -27,9 +27,16 @@ const styles = StyleSheet.create({
   box: {
     width: 100,
     height: 100,
-    padding: 10,
+    // padding: 10,
     // in array last style have precedence
     backgroundColor: "pink",
+    paddingHorizontal: 10,
+    paddingVertical: 20,
+    marginHorizontal: 10,
+    marginVertical: 20,
+    borderWidth: 2,
+    borderColor: "red",
+    borderRadius: 5,
   },
   lightBlueBox: {
     backgroundColor: "lightblue",
