@@ -13,6 +13,7 @@ import ActivityIndicatorComp from "@/components/common/activityIdicator";
 import AlertComp from "@/components/common/alert";
 import CustomGreetComp from "@/components/common/customGreet";
 import BoxComp from "@/components/common/flexLayout";
+import DimensionsApi from "@/components/common/dimensionsApi";
 
 export default function HomeScreen() {
   return (
@@ -61,7 +62,7 @@ export default function HomeScreen() {
       {/* <CustomGreetComp name="Saeed" /> */}
 
       {/*  Flex Layout /Box components */}
-      <View style={styles.boxContainer}>
+      {/* <View style={styles.boxContainer}>
         <BoxComp
           style={{ backgroundColor: "#8e9b00", alignSelf: "flex-start" }}
         >
@@ -103,7 +104,10 @@ export default function HomeScreen() {
         <BoxComp style={{ backgroundColor: "#b95f21", flexGrow: 1 }}>
           Box 7
         </BoxComp>
-      </View>
+      </View> */}
+
+      {/* Dimension Api Component */}
+      <DimensionsApi />
     </ParallaxScrollView>
   );
 }
