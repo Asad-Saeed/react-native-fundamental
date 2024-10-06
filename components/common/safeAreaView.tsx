@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
+    // we can also use second approach of different platform file extention react native auto detect on the base of file extention
+    // button.ios.jsx
+    // button.andriod.js
     ...Platform.select({
       ios: {
         color: "white",
