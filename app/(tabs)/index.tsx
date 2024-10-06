@@ -14,6 +14,7 @@ import AlertComp from "@/components/common/alert";
 import CustomGreetComp from "@/components/common/customGreet";
 import BoxComp from "@/components/common/flexLayout";
 import DimensionsApi from "@/components/common/dimensionsApi";
+import SafeAreaViewComp from "@/components/common/safeAreaView";
 
 export default function HomeScreen() {
   return (
@@ -107,7 +108,10 @@ export default function HomeScreen() {
       </View> */}
 
       {/* Dimension Api Component */}
-      <DimensionsApi />
+      {/* <DimensionsApi /> */}
+
+      {/* Safe Area View Comp */}
+      <SafeAreaViewComp />
     </ParallaxScrollView>
   );
 }
