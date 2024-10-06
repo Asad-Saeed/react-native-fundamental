@@ -1,19 +1,26 @@
-import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+// import React, { useLayoutEffect, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  useWindowDimensions,
+} from "react-native";
 
 const DimensionsApi = () => {
-  const [dimensions, setDimensions] = useState({
-    window: Dimensions.get("window"),
-  });
-  useLayoutEffect(() => {
-    const subscription = Dimensions.addEventListener("change", ({ window }) => {
-      setDimensions({ window });
-    });
-    return () => subscription.remove();
-  }, []);
-  const { window } = dimensions;
-  const windowWidth = window.width;
-  const windowHeight = window.height;
+  // const [dimensions, setDimensions] = useState({
+  //   window: Dimensions.get("window"),
+  // });
+  // useLayoutEffect(() => {
+  //   const subscription = Dimensions.addEventListener("change", ({ window }) => {
+  //     setDimensions({ window });
+  //   });
+  //   return () => subscription.remove();
+  // }, []);
+  // const { window } = dimensions;
+  // const windowWidth = window.width;
+  // const windowHeight = window.height;
+  const { height: windowHeight, width: windowWidth } = useWindowDimensions();
   console.log("Dimensions", { windowHeight, windowWidth });
 
   return (
