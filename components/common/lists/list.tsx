@@ -28,7 +28,7 @@ const ListComp = () => {
       {/* Flat List just show item in view port only */}
       <FlatList
         style={styles.scollView}
-        data={pokamon}
+        data={pokamon || []}
         renderItem={({ item, index }) => {
           console.log("item", item?.name);
           return (
@@ -41,6 +41,7 @@ const ListComp = () => {
         // horizontal
         keyExtractor={(item) => item.id.toString()}
         ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
+        ListEmptyComponent={() => <Text>No Item Found</Text>}
       />
     </SafeAreaView>
   );
