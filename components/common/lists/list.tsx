@@ -40,6 +40,7 @@ const ListComp = () => {
         }}
         // horizontal
         keyExtractor={(item) => item.id.toString()}
+        ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
       />
     </SafeAreaView>
   );
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 8,
     borderWidth: 1,
-    marginBottom: 16,
+    // marginBottom: 16,
   },
 });
 export default ListComp;
