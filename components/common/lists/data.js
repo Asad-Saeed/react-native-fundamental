@@ -100,3 +100,19 @@ export const pokamon = [
   { id: "99", type: "Flying", name: "Gastly" },
   { id: "100", type: "Flying", name: "Haunter" },
 ];
+
+export const groupedData = [
+  {
+    type: "Grass",
+    data: ["Bulbasaur", "Ivysaur", "Venusaur"],
+  },
+  {
+    type: "Fire",
+    data: ["Charmander", "Charmeleon", "Charizard"],
+  },
+  {
+    type: "Water",
+    data: ["Squirtle", "Wartortle", "Blastoise"],
+  },
+  { type: "Electric", data: ["Pikachu", "Raichu"] },
+];

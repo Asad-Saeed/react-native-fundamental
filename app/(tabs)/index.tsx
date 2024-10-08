@@ -29,7 +29,8 @@ import {
   pikachuData,
   squirtleData,
 } from "@/constants/pokemon";
-import ListComp from "@/components/common/lists/list";
+import FlatListComp from "@/components/common/lists/flatList";
+import SelectionListComp from "@/components/common/lists/selectionList";
 
 export default function HomeScreen() {
   return (
@@ -136,7 +137,8 @@ export default function HomeScreen() {
     //     <PokemonCardComp {...squirtleData} />
     //   </ScrollView>
     // </SafeAreaView>
-    <ListComp />
+    // <FlatListComp />
+    <SelectionListComp />
   );
 }
 

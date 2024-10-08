@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { pokamon } from "./data";
 
-const ListComp = () => {
+const FlatListComp = () => {
   return (
     <SafeAreaView style={styles.container}>
       {/* Simple List way but it show all items even if not in view port */}
@@ -82,4 +82,4 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
 });
-export default ListComp;
+export default FlatListComp;
