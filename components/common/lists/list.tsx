@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  FlatList,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -12,8 +13,10 @@ import { pokamon } from "./data";
 const ListComp = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scollView}>
+      {/* Simple List way but it show all items even if not in view port */}
+      {/* <ScrollView style={styles.scollView}>
         {pokamon?.map((item, index) => {
+            console.log("item",item?.name);
           return (
             <View key={index} style={styles.card}>
               <Text style={styles.text}>Name: {item.name}</Text>
@@ -21,7 +24,23 @@ const ListComp = () => {
             </View>
           );
         })}
-      </ScrollView>
+      </ScrollView> */}
+      {/* Flat List just show item in view port only */}
+      <FlatList
+        style={styles.scollView}
+        data={pokamon}
+        renderItem={({ item, index }) => {
+          console.log("item", item?.name);
+          return (
+            <View key={index} style={styles.card}>
+              <Text style={styles.text}>Name: {item.name}</Text>
+              <Text style={styles.text}>Type: {item.type}</Text>
+            </View>
+          );
+        }}
+        // horizontal
+        keyExtractor={(item) => item.id.toString()}
+      />
     </SafeAreaView>
   );
 };
