@@ -29,6 +29,7 @@ import {
   pikachuData,
   squirtleData,
 } from "@/constants/pokemon";
+import ListComp from "@/components/common/lists/list";
 
 export default function HomeScreen() {
   return (
@@ -127,14 +128,15 @@ export default function HomeScreen() {
     //   {/* Safe Area View Comp */}
     //   {/* <SafeAreaViewComp /> */}
     //  </ParallaxScrollView>
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <PokemonCardComp {...bulbasaurData} />
-        <PokemonCardComp {...charmanderData} />
-        <PokemonCardComp {...pikachuData} />
-        <PokemonCardComp {...squirtleData} />
-      </ScrollView>
-    </SafeAreaView>
+    // <SafeAreaView style={styles.container}>
+    //   <ScrollView>
+    //     <PokemonCardComp {...bulbasaurData} />
+    //     <PokemonCardComp {...charmanderData} />
+    //     <PokemonCardComp {...pikachuData} />
+    //     <PokemonCardComp {...squirtleData} />
+    //   </ScrollView>
+    // </SafeAreaView>
+    <ListComp />
   );
 }
 
