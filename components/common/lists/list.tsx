@@ -41,7 +41,15 @@ const ListComp = () => {
         // horizontal
         keyExtractor={(item) => item.id.toString()}
         ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
-        ListEmptyComponent={() => <Text>No Item Found</Text>}
+        ListEmptyComponent={() => (
+          <Text style={styles.noRecord}>No Item Found</Text>
+        )}
+        ListHeaderComponent={() => (
+          <Text style={styles.header}>Pokemon List</Text>
+        )}
+        ListFooterComponent={() => (
+          <Text style={styles.footer}>No more data!</Text>
+        )}
       />
     </SafeAreaView>
   );
@@ -63,6 +71,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     // marginBottom: 16,
+  },
+  header: { fontSize: 24, textAlign: "center", marginBottom: 12 },
+  footer: { fontSize: 24, textAlign: "center", marginTop: 12 },
+  noRecord: {
+    fontSize: 24,
+    textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 12,
   },
 });
 export default ListComp;
