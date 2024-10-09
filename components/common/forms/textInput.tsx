@@ -3,6 +3,7 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  Switch,
   Text,
   TextInput,
   View,
@@ -11,6 +12,7 @@ import {
 const TextInputComp = () => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -32,8 +34,19 @@ const TextInputComp = () => {
         placeholder="Message"
         multiline
       />
-      <Text>My Name is {name}</Text>
-      <Text>My Message is {message}</Text>
+      <View style={styles.display}>
+        <Text>My Name is {name}</Text>
+        <Text>My Message is {message}</Text>
+      </View>
+      <View style={styles.switchContainer}>
+        <Text style={styles.text}>Dark Mode</Text>
+        <Switch
+          value={isDarkMode}
+          onValueChange={() => setIsDarkMode((pre) => !pre)}
+          trackColor={{ false: "#767577", true: "#000" }}
+          thumbColor="#f4f"
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -55,6 +68,14 @@ const styles = StyleSheet.create({
     margin: 12,
     padding: 10,
     borderWidth: 1,
+  },
+  display: {
+    paddingHorizontal: 10,
+  },
+  switchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
 });
 export default TextInputComp;
