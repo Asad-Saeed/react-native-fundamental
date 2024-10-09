@@ -31,6 +31,7 @@ import {
 } from "@/constants/pokemon";
 import FlatListComp from "@/components/common/lists/flatList";
 import SelectionListComp from "@/components/common/lists/selectionList";
+import TextInputComp from "@/components/common/forms/textInput";
 
 export default function HomeScreen() {
   return (
@@ -138,7 +139,8 @@ export default function HomeScreen() {
     //   </ScrollView>
     // </SafeAreaView>
     // <FlatListComp />
-    <SelectionListComp />
+    // <SelectionListComp />
+    <TextInputComp />
   );
 }
 
