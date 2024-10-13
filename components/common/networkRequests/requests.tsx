@@ -12,6 +12,12 @@ import {
 const NetworkRequestComp = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const handleRefresh = () => {
+    setRefreshing(true);
+    fetchData(20);
+    setRefreshing(false);
+  };
   const fetchData = async (limit = 10) => {
     try {
       setLoading(true);
@@ -59,6 +65,8 @@ const NetworkRequestComp = () => {
           ListFooterComponent={() => (
             <Text style={styles.footerText}>End of list</Text>
           )}
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
         />
       </View>
     </SafeAreaView>
