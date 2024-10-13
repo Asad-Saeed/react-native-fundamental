@@ -32,6 +32,7 @@ import {
 import FlatListComp from "@/components/common/lists/flatList";
 import SelectionListComp from "@/components/common/lists/selectionList";
 import TextInputComp from "@/components/common/forms/textInput";
+import LoginFormComp from "@/components/common/forms/loginForm";
 
 export default function HomeScreen() {
   return (
@@ -140,7 +141,8 @@ export default function HomeScreen() {
     // </SafeAreaView>
     // <FlatListComp />
     // <SelectionListComp />
-    <TextInputComp />
+    // <TextInputComp />
+    <LoginFormComp />
   );
 }
 
