@@ -18,6 +18,7 @@ const NetworkRequestComp = () => {
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
   const [isPosting, setIsPosting] = useState(false);
+  const [errors, setErrors] = useState("");
 
   const handleRefresh = () => {
     setRefreshing(true);
@@ -32,8 +33,10 @@ const NetworkRequestComp = () => {
       );
       const data = await response.json();
       setPosts(data);
+      setErrors("");
     } catch (error) {
       console.error("error", error);
+      setErrors("Failed to fetch posts. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -62,8 +65,10 @@ const NetworkRequestComp = () => {
       setPosts([newPost, ...posts]);
       setPostTitle("");
       setPostBody("");
+      setErrors("");
     } catch (error) {
       console.error("error", error);
+      setErrors("Failed to add post. Please try again later.");
     } finally {
       setIsPosting(false);
     }
@@ -79,51 +84,59 @@ const NetworkRequestComp = () => {
   }
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter post title"
-          value={postTitle}
-          onChangeText={setPostTitle}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Enter post body"
-          value={postBody}
-          onChangeText={setPostBody}
-        />
-        <Button
-          title={isPosting ? "Posting..." : "Add Post"}
-          color="black"
-          onPress={handleAddPost}
-          disabled={isPosting}
-        />
-      </View>
-      <>
-        <View style={styles.listContainer}>
-          <FlatList
-            data={posts}
-            renderItem={({ item }) => {
-              return (
-                <View style={styles.card}>
-                  <Text style={styles.titleText}>{item?.title}</Text>
-                  <Text style={styles.bodyText}>{item?.body}</Text>
-                </View>
-              );
-            }}
-            ItemSeparatorComponent={() => <View style={{ height: 16 }}></View>}
-            ListEmptyComponent={() => <Text>No Data Found!</Text>}
-            ListHeaderComponent={() => (
-              <Text style={styles.headerText}>Post List</Text>
-            )}
-            ListFooterComponent={() => (
-              <Text style={styles.footerText}>End of list</Text>
-            )}
-            refreshing={refreshing}
-            onRefresh={handleRefresh}
-          />
+      {errors ? (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{errors}</Text>
         </View>
-      </>
+      ) : (
+        <>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter post title"
+              value={postTitle}
+              onChangeText={setPostTitle}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Enter post body"
+              value={postBody}
+              onChangeText={setPostBody}
+            />
+            <Button
+              title={isPosting ? "Posting..." : "Add Post"}
+              color="black"
+              onPress={handleAddPost}
+              disabled={isPosting}
+            />
+          </View>
+          <View style={styles.listContainer}>
+            <FlatList
+              data={posts}
+              renderItem={({ item }) => {
+                return (
+                  <View style={styles.card}>
+                    <Text style={styles.titleText}>{item?.title}</Text>
+                    <Text style={styles.bodyText}>{item?.body}</Text>
+                  </View>
+                );
+              }}
+              ItemSeparatorComponent={() => (
+                <View style={{ height: 16 }}></View>
+              )}
+              ListEmptyComponent={() => <Text>No Data Found!</Text>}
+              ListHeaderComponent={() => (
+                <Text style={styles.headerText}>Post List</Text>
+              )}
+              ListFooterComponent={() => (
+                <Text style={styles.footerText}>End of list</Text>
+              )}
+              refreshing={refreshing}
+              onRefresh={handleRefresh}
+            />
+          </View>
+        </>
+      )}
     </SafeAreaView>
   );
 };
@@ -174,6 +187,19 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     padding: 8,
     borderRadius: 8,
+  },
+  errorContainer: {
+    backgroundColor: "#FFC0CB",
+    padding: 16,
+    margin: 16,
+    borderRadius: 8,
+    borderWidth: 1,
+    alignItems: "center",
+  },
+  errorText: {
+    color: "#D8000C",
+    fontSize: 16,
+    textAlign: "center",
   },
 });
 export default NetworkRequestComp;
