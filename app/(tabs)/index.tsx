@@ -33,6 +33,7 @@ import FlatListComp from "@/components/common/lists/flatList";
 import SelectionListComp from "@/components/common/lists/selectionList";
 import TextInputComp from "@/components/common/forms/textInput";
 import LoginFormComp from "@/components/common/forms/loginForm";
+import NetworkRequestComp from "@/components/common/networkRequests/requests";
 
 export default function HomeScreen() {
   return (
@@ -142,7 +143,8 @@ export default function HomeScreen() {
     // <FlatListComp />
     // <SelectionListComp />
     // <TextInputComp />
-    <LoginFormComp />
+    // <LoginFormComp />
+    <NetworkRequestComp />
   );
 }
 
