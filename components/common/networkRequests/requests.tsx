@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
   FlatList,
   SafeAreaView,
   StatusBar,
@@ -10,16 +11,33 @@ import {
 
 const NetworkRequestComp = () => {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const fetchData = async (limit = 10) => {
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/posts?_limit=${limit}`
-    );
-    const data = await response.json();
-    setPosts(data);
+    try {
+      setLoading(true);
+      const response = await fetch(
+        `https://jsonplaceholder.typicode.com/posts?_limit=${limit}`
+      );
+      const data = await response.json();
+      setPosts(data);
+    } catch (error) {
+      console.error("error", error);
+    } finally {
+      setLoading(false);
+    }
   };
   useEffect(() => {
     fetchData();
   }, []);
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text>Loading...</Text>
+      </SafeAreaView>
+    );
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.listContainer}>
@@ -72,5 +90,12 @@ const styles = StyleSheet.create({
   text: { fontSize: 20 },
   headerText: { fontSize: 30, alignSelf: "center", marginBottom: 10 },
   footerText: { fontSize: 10, alignSelf: "center" },
+  loadingContainer: {
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f5f5f5",
+  },
 });
 export default NetworkRequestComp;
