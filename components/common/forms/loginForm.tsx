@@ -8,14 +8,31 @@ import {
   TextInput,
   View,
   Platform,
+  Alert,
 } from "react-native";
 
 const LoginFormComp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [errors, setErrors] = useState({ username: "", password: "" });
+
+  const validateForm = () => {
+    let errors = { username: "", password: "" };
+    if (!username) errors.username = "Username is required";
+    if (!password) errors.password = "Password is required";
+    setErrors(errors);
+    return !errors.username && !errors.password;
+  };
+
   const HandleSubmit = () => {
     console.log("submit");
+    if (validateForm()) {
+      Alert.alert(`You submit username ${username} and password ${password}`);
+      setUsername("");
+      setPassword("");
+      setErrors({ username: "", password: "" });
+    }
   };
   return (
     <KeyboardAvoidingView
@@ -35,6 +52,7 @@ const LoginFormComp = () => {
           value={username}
           onChangeText={setUsername}
         />
+        {errors.username && <Text style={styles.error}>{errors.username}</Text>}
         <Text style={styles.label}>Password</Text>
         <TextInput
           value={password}
@@ -43,6 +61,7 @@ const LoginFormComp = () => {
           secureTextEntry
           onChangeText={setPassword}
         />
+        {errors.password && <Text style={styles.error}>{errors.password}</Text>}
         <Button color="#61DAFB" title="Login" onPress={HandleSubmit} />
       </View>
     </KeyboardAvoidingView>
@@ -79,12 +98,16 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: "#ddd",
     borderWidth: 1,
-    marginBottom: 30,
+    marginBottom: 10,
     padding: 10,
     borderRadius: 5,
   },
   button: {
     backgroundColor: "red",
+  },
+  error: {
+    color: "red",
+    marginBottom: 10,
   },
 });
 export default LoginFormComp;
