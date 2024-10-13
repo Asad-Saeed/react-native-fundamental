@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
+  Button,
   FlatList,
   SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
   View,
 } from "react-native";
 
@@ -13,6 +15,10 @@ const NetworkRequestComp = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [postTitle, setPostTitle] = useState("");
+  const [postBody, setPostBody] = useState("");
+  const [isPosting, setIsPosting] = useState(false);
+
   const handleRefresh = () => {
     setRefreshing(true);
     fetchData(20);
@@ -36,6 +42,33 @@ const NetworkRequestComp = () => {
     fetchData();
   }, []);
 
+  const handleAddPost = async () => {
+    try {
+      setIsPosting(true);
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/posts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: postTitle,
+            body: postBody,
+          }),
+        }
+      );
+      const newPost = await response.json();
+      setPosts([newPost, ...posts]);
+      setPostTitle("");
+      setPostBody("");
+    } catch (error) {
+      console.error("error", error);
+    } finally {
+      setIsPosting(false);
+    }
+  };
+
   if (loading) {
     return (
       <SafeAreaView style={styles.loadingContainer}>
@@ -46,29 +79,51 @@ const NetworkRequestComp = () => {
   }
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.listContainer}>
-        <FlatList
-          data={posts}
-          renderItem={({ item }) => {
-            return (
-              <View style={styles.card}>
-                <Text style={styles.titleText}>{item?.title}</Text>
-                <Text style={styles.bodyText}>{item?.body}</Text>
-              </View>
-            );
-          }}
-          ItemSeparatorComponent={() => <View style={{ height: 16 }}></View>}
-          ListEmptyComponent={() => <Text>No Data Found!</Text>}
-          ListHeaderComponent={() => (
-            <Text style={styles.headerText}>Post List</Text>
-          )}
-          ListFooterComponent={() => (
-            <Text style={styles.footerText}>End of list</Text>
-          )}
-          refreshing={refreshing}
-          onRefresh={handleRefresh}
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter post title"
+          value={postTitle}
+          onChangeText={setPostTitle}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter post body"
+          value={postBody}
+          onChangeText={setPostBody}
+        />
+        <Button
+          title={isPosting ? "Posting..." : "Add Post"}
+          color="black"
+          onPress={handleAddPost}
+          disabled={isPosting}
         />
       </View>
+      <>
+        <View style={styles.listContainer}>
+          <FlatList
+            data={posts}
+            renderItem={({ item }) => {
+              return (
+                <View style={styles.card}>
+                  <Text style={styles.titleText}>{item?.title}</Text>
+                  <Text style={styles.bodyText}>{item?.body}</Text>
+                </View>
+              );
+            }}
+            ItemSeparatorComponent={() => <View style={{ height: 16 }}></View>}
+            ListEmptyComponent={() => <Text>No Data Found!</Text>}
+            ListHeaderComponent={() => (
+              <Text style={styles.headerText}>Post List</Text>
+            )}
+            ListFooterComponent={() => (
+              <Text style={styles.footerText}>End of list</Text>
+            )}
+            refreshing={refreshing}
+            onRefresh={handleRefresh}
+          />
+        </View>
+      </>
     </SafeAreaView>
   );
 };
@@ -104,6 +159,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f5f5f5",
+  },
+  inputContainer: {
+    backgroundColor: "white",
+    padding: 16,
+    borderRadius: 8,
+    borderWidth: 1,
+    margin: 16,
+  },
+  input: {
+    height: 40,
+    borderColor: "#ddd",
+    borderWidth: 1,
+    marginBottom: 8,
+    padding: 8,
+    borderRadius: 8,
   },
 });
 export default NetworkRequestComp;
