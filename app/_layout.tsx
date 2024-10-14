@@ -43,7 +43,11 @@ export default function RootLayout() {
       </Stack> */}
       <NavigationContainer independent={true}>
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            initialParams={{ name: "Guest" }}
+          />
           <Stack.Screen name="About" component={AboutScreen} />
           <Stack.Screen name="Contact" component={ContactScreen} />
         </Stack.Navigator>
