@@ -1,15 +1,11 @@
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-const AboutScreen = ({ navigation }) => {
+const ContactScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.box}>
-        <Text style={styles.text}>About Screen</Text>
-        <Button
-          title="Go to Contact"
-          onPress={() => navigation.navigate("Contact")}
-        />
+        <Text style={styles.text}>Welcome</Text>
       </View>
     </View>
   );
@@ -31,4 +27,4 @@ const styles = StyleSheet.create({
   },
   text: { fontSize: 20 },
 });
-export default AboutScreen;
+export default ContactScreen;

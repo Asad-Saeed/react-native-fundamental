@@ -1,8 +1,10 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 
 // Navigation prop just use for screen components for other components we need to use useNavigation hook
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.box}>

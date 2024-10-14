@@ -14,6 +14,7 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "@/screens/homeScreen";
 import AboutScreen from "@/screens/aboutScreen";
+import ContactScreen from "@/screens/contactScreen";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -44,6 +45,7 @@ export default function RootLayout() {
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="About" component={AboutScreen} />
+          <Stack.Screen name="Contact" component={ContactScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
