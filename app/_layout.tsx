@@ -199,8 +199,94 @@ export default function RootLayout() {
               ),
             }}
           />
+          <Tabs.Screen
+            name="About Stack"
+            component={StackNavigator}
+            options={{
+              tabBarLabel: "About Stack",
+              tabBarIcon: ({ color, focused }) => (
+                <TabBarIcon
+                  name={
+                    focused
+                      ? "information-circle"
+                      : "information-circle-outline"
+                  }
+                  color={color}
+                  size={20}
+                />
+              ),
+            }}
+          />
         </Tabs.Navigator>
       </NavigationContainer>
     </ThemeProvider>
   );
 }
+
+export const StackNavigator = () => {
+  const Stack = createNativeStackNavigator();
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          title: "Welcome Home",
+          headerStyle: { backgroundColor: "#6a51ae" },
+          headerTintColor: "#fff",
+          headerTitleStyle: { fontWeight: "bold" },
+          headerTitleAlign: "center",
+          headerShown: true,
+          headerLeft: () => null,
+          headerRight: () => (
+            <Pressable
+              onPress={() => {
+                alert("Menu is Pressable");
+              }}
+            >
+              <Text style={{ color: "white", fontSize: 20 }}>Menu</Text>
+            </Pressable>
+          ),
+          contentStyle: {
+            backgroundColor: "#e8e4f3",
+          },
+        }}
+      >
+        <Stack.Screen
+          // options={{
+          //   title: "Welcome Home",
+          //   headerStyle: { backgroundColor: "#6a51ae" },
+          //   headerTintColor: "#fff",
+          //   headerTitleStyle: { fontWeight: "bold" },
+          //   headerTitleAlign: "center",
+          //   headerShown: true,
+          //   headerLeft: () => null,
+          //   headerRight: () => (
+          //     <Pressable
+          //       onPress={() => {
+          //         alert("Menu is Pressable");
+          //       }}
+          //     >
+          //       <Text style={{ color: "white", fontSize: 20 }}>Menu</Text>
+          //     </Pressable>
+          //   ),
+          //   contentStyle: {
+          //     backgroundColor: "#e8e4f3",
+          //   },
+          // }}
+          name="Home"
+          component={HomeScreen}
+          initialParams={{ name: "Guest" }}
+        />
+        <Stack.Screen
+          name="About"
+          component={AboutScreen}
+          // options={({ route }) => ({
+          //   title: route.params.name,
+          // })}
+        />
+        <Stack.Screen name="Contact" component={ContactScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};

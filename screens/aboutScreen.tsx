@@ -2,7 +2,7 @@ import React, { useLayoutEffect } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 
 const AboutScreen = ({ navigation, route }) => {
-  const { name } = route.params;
+  const { name } = route.params || {};
 
   useLayoutEffect(() => {
     navigation.setOptions({

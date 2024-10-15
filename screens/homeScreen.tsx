@@ -4,7 +4,7 @@ import { Button, StyleSheet, Text, View } from "react-native";
 
 // Navigation prop just use for screen components for other components we need to use useNavigation hook
 const HomeScreen = ({ route }) => {
-  const { name } = route.params;
+  const { name } = route.params || {};
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
