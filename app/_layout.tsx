@@ -15,6 +15,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "@/screens/homeScreen";
 import AboutScreen from "@/screens/aboutScreen";
 import ContactScreen from "@/screens/contactScreen";
+import { Pressable, Text } from "react-native";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -42,8 +43,52 @@ export default function RootLayout() {
         <Stack.Screen name="+not-found" />
       </Stack> */}
       <NavigationContainer independent={true}>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            title: "Welcome Home",
+            headerStyle: { backgroundColor: "#6a51ae" },
+            headerTintColor: "#fff",
+            headerTitleStyle: { fontWeight: "bold" },
+            headerTitleAlign: "center",
+            headerShown: true,
+            headerLeft: () => null,
+            headerRight: () => (
+              <Pressable
+                onPress={() => {
+                  alert("Menu is Pressable");
+                }}
+              >
+                <Text style={{ color: "white", fontSize: 20 }}>Menu</Text>
+              </Pressable>
+            ),
+            contentStyle: {
+              backgroundColor: "#e8e4f3",
+            },
+          }}
+        >
           <Stack.Screen
+            // options={{
+            //   title: "Welcome Home",
+            //   headerStyle: { backgroundColor: "#6a51ae" },
+            //   headerTintColor: "#fff",
+            //   headerTitleStyle: { fontWeight: "bold" },
+            //   headerTitleAlign: "center",
+            //   headerShown: true,
+            //   headerLeft: () => null,
+            //   headerRight: () => (
+            //     <Pressable
+            //       onPress={() => {
+            //         alert("Menu is Pressable");
+            //       }}
+            //     >
+            //       <Text style={{ color: "white", fontSize: 20 }}>Menu</Text>
+            //     </Pressable>
+            //   ),
+            //   contentStyle: {
+            //     backgroundColor: "#e8e4f3",
+            //   },
+            // }}
             name="Home"
             component={HomeScreen}
             initialParams={{ name: "Guest" }}
