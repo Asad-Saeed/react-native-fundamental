@@ -16,16 +16,22 @@ import HomeScreen from "@/screens/homeScreen";
 import AboutScreen from "@/screens/aboutScreen";
 import ContactScreen from "@/screens/contactScreen";
 import { Pressable, Text } from "react-native";
+import "react-native-gesture-handler";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import DashboardScreen from "@/screens/dashboardScreen";
+import SettingsScreen from "@/screens/settingScreen";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const Stack = createNativeStackNavigator();
+  const Drawer = createDrawerNavigator();
+
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
-  const Stack = createNativeStackNavigator();
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
@@ -42,7 +48,8 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack> */}
-      <NavigationContainer independent={true}>
+      {/* Stack Navigation */}
+      {/* <NavigationContainer independent={true}>
         <Stack.Navigator
           initialRouteName="Home"
           screenOptions={{
@@ -102,6 +109,19 @@ export default function RootLayout() {
           />
           <Stack.Screen name="Contact" component={ContactScreen} />
         </Stack.Navigator>
+      </NavigationContainer> */}
+      {/* Drawer Navigation */}
+      <NavigationContainer independent={true}>
+        <Drawer.Navigator>
+          <Drawer.Screen
+            name="Dashboard"
+            component={DashboardScreen}
+          ></Drawer.Screen>
+          <Drawer.Screen
+            name="Settings"
+            component={SettingsScreen}
+          ></Drawer.Screen>
+        </Drawer.Navigator>
       </NavigationContainer>
     </ThemeProvider>
   );
