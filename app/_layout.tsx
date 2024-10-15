@@ -112,8 +112,26 @@ export default function RootLayout() {
       </NavigationContainer> */}
       {/* Drawer Navigation */}
       <NavigationContainer independent={true}>
-        <Drawer.Navigator>
+        <Drawer.Navigator
+          screenOptions={{
+            drawerActiveTintColor: "#333",
+            drawerActiveBackgroundColor: "lightblue",
+            drawerContentStyle: {
+              backgroundColor: "#c6cbef",
+            },
+          }}
+        >
           <Drawer.Screen
+            options={{
+              title: "My Dashboard",
+              drawerIcon: () => <Text>Dashboard</Text>,
+              drawerLabel: "Dashboard label",
+              //   drawerActiveTintColor: "#333",
+              //   drawerActiveBackgroundColor: "lightblue",
+              //   drawerContentStyle: {
+              //     backgroundColor: "#c6cbef",
+              //   },
+            }}
             name="Dashboard"
             component={DashboardScreen}
           ></Drawer.Screen>
