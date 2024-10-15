@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 
 const AboutScreen = ({ navigation, route }) => {
   const { name } = route.params;
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: name,
+    });
+  }, [navigation, name]);
+
   return (
     <View style={styles.container}>
       <View style={styles.box}>

@@ -93,7 +93,13 @@ export default function RootLayout() {
             component={HomeScreen}
             initialParams={{ name: "Guest" }}
           />
-          <Stack.Screen name="About" component={AboutScreen} />
+          <Stack.Screen
+            name="About"
+            component={AboutScreen}
+            // options={({ route }) => ({
+            //   title: route.params.name,
+            // })}
+          />
           <Stack.Screen name="Contact" component={ContactScreen} />
         </Stack.Navigator>
       </NavigationContainer>
