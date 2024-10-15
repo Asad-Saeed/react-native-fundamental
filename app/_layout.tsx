@@ -20,6 +20,10 @@ import "react-native-gesture-handler";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import DashboardScreen from "@/screens/dashboardScreen";
 import SettingsScreen from "@/screens/settingScreen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import ProfileScreen from "@/screens/profileScreen";
+import CoursesScreen from "@/screens/courseScreen";
+import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -27,6 +31,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const Stack = createNativeStackNavigator();
   const Drawer = createDrawerNavigator();
+  const Tabs = createBottomTabNavigator();
 
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
@@ -111,7 +116,7 @@ export default function RootLayout() {
         </Stack.Navigator>
       </NavigationContainer> */}
       {/* Drawer Navigation */}
-      <NavigationContainer independent={true}>
+      {/* <NavigationContainer independent={true}>
         <Drawer.Navigator
           screenOptions={{
             drawerActiveTintColor: "#333",
@@ -140,6 +145,61 @@ export default function RootLayout() {
             component={SettingsScreen}
           ></Drawer.Screen>
         </Drawer.Navigator>
+      </NavigationContainer> */}
+      {/* Tab Navigation */}
+      <NavigationContainer independent={true}>
+        <Tabs.Navigator
+          screenOptions={{
+            tabBarLabelPosition: "below-icon",
+            tabBarShowLabel: true,
+            tabBarActiveTintColor: "purple",
+            tabBarInactiveTintColor: "gray",
+          }}
+        >
+          <Tabs.Screen
+            name="Profile"
+            component={ProfileScreen}
+            options={{
+              tabBarLabel: "Profile",
+              tabBarIcon: ({ color, focused }) => (
+                <TabBarIcon
+                  name={focused ? "person" : "person-outline"}
+                  color={color}
+                  size={20}
+                />
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="Courses"
+            component={CoursesScreen}
+            options={{
+              tabBarLabel: "Coures",
+              tabBarIcon: ({ color, focused }) => (
+                <TabBarIcon
+                  name={focused ? "book" : "book-outline"}
+                  color={color}
+                  size={20}
+                />
+              ),
+              tabBarBadge: 6,
+            }}
+          />
+          <Tabs.Screen
+            name="Settings"
+            component={SettingsScreen}
+            options={{
+              tabBarLabel: "Settings",
+              tabBarIcon: ({ color, focused }) => (
+                <TabBarIcon
+                  name={focused ? "settings" : "settings-outline"}
+                  color={color}
+                  size={20}
+                />
+              ),
+            }}
+          />
+        </Tabs.Navigator>
       </NavigationContainer>
     </ThemeProvider>
   );
